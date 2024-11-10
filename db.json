@@ -41,6 +41,15 @@
       "name": "Fiddle Leaf Fig",
       "image": "./images/fiddle-leaf-fig.jpg",
       "price": 55
+    },
+    {
+      "name": "Zebra Plant",
+      "image": "https://hips.hearstapps.com/hmg-prod/images/close-up-haworthia-fasciata-at-home-royalty-free-image-1727982837.jpg?crop=0.44504xw:1xh;center,top&resize=980:*",
+      "price": "13",
+      "id": 8
+    },
+    {
+      "id": 9
     }
   ]
 }
