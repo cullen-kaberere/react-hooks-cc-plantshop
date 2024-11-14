@@ -13,6 +13,7 @@ React.useEffect (()=>{
     setPlants(data);
   })
    
+  
 
 },[])
 
