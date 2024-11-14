@@ -9,7 +9,7 @@ function PlantPage({plants,setPlants,newPlant}) {
   
 
   function addPlant(newPlant){
-    fetch("http://localhost:6001/plants",{
+    fetch("https://react-hooks-cc-plantshop-2-nztt.onrender.com/plants",{
       method:"POST",
       headers:{
         'Content-Type':'Application/JSON'

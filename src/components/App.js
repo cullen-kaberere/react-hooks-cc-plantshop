@@ -6,14 +6,13 @@ function App() {
 const[plants,setPlants] = useState([]);
 
 React.useEffect (()=>{
-  fetch('http://localhost:6001/plants')
+  fetch('https://react-hooks-cc-plantshop-2-nztt.onrender.com/plants')
   .then((response)=>response.json())
   .then((data)=>{
     console.log('Plants:',data);
     setPlants(data);
   })
    
-  
 
 },[])
 
