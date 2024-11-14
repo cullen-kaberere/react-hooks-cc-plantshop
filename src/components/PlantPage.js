@@ -1,29 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 import NewPlantForm from "./NewPlantForm";
 import PlantList from "./PlantList";
 import Search from "./Search";
 
-function PlantPage({plants,setPlants,newPlant}) {
-  
-  const [search,setSearch] = React.useState('');
-  
+function PlantPage({ plants, addPlant, sellOut }) {
+  const [searchPlant, setSearchPlant] = useState("")
 
-  function addPlant(newPlant){
-    fetch("https://react-hooks-cc-plantshop-2-nztt.onrender.com/plants",{
-      method:"POST",
-      headers:{
-        'Content-Type':'Application/JSON'
-      },
-      body : JSON.stringify(newPlant)
-    })
-    .then((reponse) => reponse.json())
-    .then((plant) => setPlants([...plants,plant]));
-  }
+  const filteredPlants = plants.filter(plant => plant.name.toLowerCase().includes(searchPlant))
+  
   return (
     <main>
-      <NewPlantForm handleForm={addPlant} />
-      <Search handleSearch={setSearch}/>
-      <PlantList plants ={plants.filter(plant=>plant.name.toLowerCase().includes(search.toLowerCase()))}/>
+      <NewPlantForm  addPlant={addPlant}/>
+      <Search setSearchPlant={setSearchPlant}/>
+      <PlantList plants={filteredPlants} sellOut={sellOut}/>
     </main>
   );
 }

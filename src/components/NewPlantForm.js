@@ -1,51 +1,37 @@
-import React from "react";
+import React, { useState } from "react";
 
-function NewPlantForm({handleForm}) {
-  const [newPlant, setNewPlant] = React.useState({});
+const initialPlantFormData = {
+  name: "",
+  image: "",
+  price: 0
+}
 
-  //controls the form
-  function handleOnChange(event){
-    const addedPlant ={...newPlant,[event.target.name]:event.target.value}
-    setNewPlant(addedPlant);
+function NewPlantForm({ addPlant }) {
+  const [plant, setPlant] = useState(initialPlantFormData)
 
-    console.log("we've added this plant:", addedPlant);
+  function handleSubmit(event){
+    event.preventDefault()
+    addPlant(plant)
+    
+    setPlant(initialPlantFormData)
   }
 
-  function handleOnSubmit (event){
-    event.preventDefault();
-    handleForm(newPlant);
-    setNewPlant({}); //Not reseting the form 
-
+  function handleChange(event) {
+    const key = event.target.name
+    const newPlantFormData = {
+      ...plant,
+      [key]: event.target.value
+    }
+    setPlant(newPlantFormData)
   }
- 
-
 
   return (
     <div className="new-plant-form">
       <h2>New Plant</h2>
-      <form onSubmit={handleOnSubmit}>
-        <input
-          type="text"
-          name="name"
-          value={newPlant.name}
-          onChange={handleOnChange}
-          placeholder="Plant name"
-        />
-        <input
-          type="text"
-          name="image"
-          value={newPlant.image}
-          onChange={handleOnChange}
-          placeholder="Image URL"
-        />
-        <input
-          type="number"
-          name="price"
-          step="0.01"
-          value={newPlant.price}
-          onChange={handleOnChange}
-          placeholder="Price"
-        />
+      <form onSubmit={handleSubmit}>
+        <input type="text" name="name" placeholder="Plant name" value={plant.name} onChange={handleChange}/>
+        <input type="text" name="image" placeholder="Image URL" value={plant.image} onChange={handleChange}/>
+        <input type="number" name="price" step="0.01" placeholder="Price" value={plant.price} onChange={handleChange}/>
         <button type="submit">Add Plant</button>
       </form>
     </div>

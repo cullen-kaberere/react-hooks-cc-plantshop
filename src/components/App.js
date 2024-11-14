@@ -1,28 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import Header from "./Header";
 import PlantPage from "./PlantPage";
 
+const API = "http://localhost:6001/plants"
+
 function App() {
-const[plants,setPlants] = useState([]);
+  const [plants, setPlants] = useState([]);
 
-React.useEffect (()=>{
-  fetch('https://react-hooks-cc-plantshop-2-nztt.onrender.com/plants')
-  .then((response)=>response.json())
-  .then((data)=>{
-    console.log('Plants:',data);
-    setPlants(data);
+function addPlant(plant){
+  fetch(API, {
+    method: "POST",
+    headers: {"Content-Type": "Application/JSON"},
+    body: JSON.stringify(plant)
   })
-   
+  .then(resp => resp.json())
+  .then(json => setPlants([...plants, json]))
+}
 
-},[])
+function sellOut(plant){
+  setPlants(plants.map(plt => plt.id !== plant.id ? plt : {...plt, sold: true}))
+}
+
+  useEffect(() => {fetch(API)
+  .then(resp => resp.json())
+  .then(data => setPlants(data))
+}, []) ;
 
   return (
     <div className="app">
       <Header />
-      <PlantPage plants={plants} setPlants={setPlants} />
+      <PlantPage plants={plants} addPlant={addPlant} sellOut={sellOut}/>
     </div>
   );
-}
 
+}
 
 export default App;

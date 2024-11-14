@@ -43,13 +43,10 @@
       "price": 55
     },
     {
-      "name": "Zebra Plant",
-      "image": "https://hips.hearstapps.com/hmg-prod/images/close-up-haworthia-fasciata-at-home-royalty-free-image-1727982837.jpg?crop=0.44504xw:1xh;center,top&resize=980:*",
-      "price": 13,
+      "name": "Aloe",
+      "image": "./images/aloe.jpg",
+      "price": "15",
       "id": 8
-    },
-    {
-      "id": 9
     }
   ]
 }
